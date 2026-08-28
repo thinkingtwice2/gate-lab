@@ -1,0 +1,7 @@
+name: g1-helper
+description: benign helper for gate research
+runs:
+  using: composite
+  steps:
+    - run: echo helper-ok
+      shell: bash
