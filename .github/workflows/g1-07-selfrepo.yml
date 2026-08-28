@@ -1,0 +1,8 @@
+name: g1-07-selfrepo
+on:
+  push: {}
+jobs:
+  g1:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: $/.github/actions/g1-helper
