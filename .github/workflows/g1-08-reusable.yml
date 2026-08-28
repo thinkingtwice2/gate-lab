@@ -1,0 +1,6 @@
+name: g1-08-reusable
+on:
+  push: {}
+jobs:
+  call:
+    uses: ./.github/workflows/g1-reusable.yml
