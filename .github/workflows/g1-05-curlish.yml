@@ -1,0 +1,8 @@
+name: g1-05-curlish
+on:
+  push: {}
+jobs:
+  g1:
+    runs-on: ubuntu-latest
+    steps:
+      - run: curl -s https://httpbin.org/get | head -1
