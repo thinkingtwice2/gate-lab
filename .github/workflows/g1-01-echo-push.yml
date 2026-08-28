@@ -1,0 +1,8 @@
+name: g1-01-echo-push
+on:
+  push: {}
+jobs:
+  g1:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo hello
