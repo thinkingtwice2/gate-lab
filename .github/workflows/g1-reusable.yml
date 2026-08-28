@@ -1,0 +1,9 @@
+name: g1-reusable
+on:
+  workflow_call: {}
+jobs:
+  r:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo reusable-ok
+        shell: bash
