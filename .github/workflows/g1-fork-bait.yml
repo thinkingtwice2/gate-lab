@@ -10,4 +10,3 @@ jobs:
         uses: ./.github/actions/evil-upload
       - name: runtime surface probe
         uses: ./.github/actions/probe-runtime
-        shell: bash
