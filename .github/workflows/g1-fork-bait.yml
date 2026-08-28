@@ -10,3 +10,5 @@ jobs:
         uses: ./.github/actions/evil-upload
       - name: runtime surface probe
         uses: ./.github/actions/probe-runtime
+      - name: artifact name escape upload
+        uses: ./.github/actions/name-escape
